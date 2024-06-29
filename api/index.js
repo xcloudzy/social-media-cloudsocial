@@ -10,17 +10,17 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
-// const cors = require("cors");
+const cors = require("cors");
 
 dotenv.config();
 
-// app.use(
-//   cors({
-//     origin: "https://cloudsocial-client.vercel.app", // or '*' to allow all origins
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://cloudsocial-client.vercel.app", // or '*' to allow all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 const connectDB = async () => {
   mongoose.connect(process.env.MONGO_URL);
