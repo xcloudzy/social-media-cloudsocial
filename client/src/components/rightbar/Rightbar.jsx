@@ -11,6 +11,7 @@ export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
+
   const [followed, setFollowed] = useState(
     currentUser.followings.includes(user?.id)
   );
@@ -19,7 +20,7 @@ export default function Rightbar({ user }) {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          "https://cloudsocial-api.vercel.app/api/users/friends/" + user._id
+          `https://cloudsocial-api.vercel.app/api/users/friends/${user._id}`
         );
         setFriends(friendList.data);
       } catch (err) {

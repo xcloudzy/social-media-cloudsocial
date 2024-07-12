@@ -13,10 +13,10 @@ export default function Feed({ username }) {
     const fetchPosts = async () => {
       const res = username
         ? await axios.get(
-            "https://cloudsocial-api.vercel.app/api/posts/profile/" + username
+            `https://cloudsocial-api.vercel.app/api/posts/profile/${username}`
           )
         : await axios.get(
-            "https://cloudsocial-api.vercel.app/api/posts/timeline/" + user._id
+            `https://cloudsocial-api.vercel.app/api/posts/timeline/${user._id}`
           );
       setPosts(
         res.data.sort((p1, p2) => {
