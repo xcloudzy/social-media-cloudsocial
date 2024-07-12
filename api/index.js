@@ -23,7 +23,10 @@ app.use(
 );
 
 const connectDB = async () => {
-  mongoose.connect(process.env.MONGO_URL);
+  mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
   console.log(`Database is Connected`);
 };
 connectDB();
