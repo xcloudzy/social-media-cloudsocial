@@ -11,18 +11,31 @@ export default function Feed({ username }) {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = username
-        ? await axios.get(
-            `https://cloudsocial-api.vercel.app/api/posts/profile/${username}`
-          )
-        : await axios.get(
-            `https://cloudsocial-api.vercel.app/api/posts/timeline/${user._id}`
+      try {
+        const res = username
+          ? await axios.get(
+              `https://cloudsocial-api.vercel.app/api/posts/profile/${username}`
+            )
+          : await axios.get(
+              `https://cloudsocial-api.vercel.app/api/posts/timeline/${user._id}`
+            );
+
+        // Log the response to understand its structure
+        console.log("API response:", res);
+
+        // Check if res.data is an array before sorting
+        if (Array.isArray(res.data)) {
+          setPosts(
+            res.data.sort((p1, p2) => {
+              return new Date(p2.createdAt) - new Date(p1.createdAt);
+            })
           );
-      setPosts(
-        res.data.sort((p1, p2) => {
-          return new Date(p2.createdAt) - new Date(p1.createdAt);
-        })
-      );
+        } else {
+          console.error("API response is not an array:", res.data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch posts:", err);
+      }
     };
     fetchPosts();
   }, [username, user._id]);
