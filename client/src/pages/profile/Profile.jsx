@@ -15,7 +15,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `https://cloudsocial-api.vercel.app/users?username=${username}`
+        `https://cloudsocial-api.vercel.app/api/users?username=${username}`
       );
       setUser(res.data);
     };

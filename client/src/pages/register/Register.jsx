@@ -22,9 +22,12 @@ export default function Register() {
         password: password.current.value,
       };
       try {
-        await axios.post("https://cloudsocial-api.vercel.app/auth/register", {
-          user,
-        });
+        await axios.post(
+          "https://cloudsocial-api.vercel.app/api/auth/register",
+          {
+            user,
+          }
+        );
         history.push("/login");
       } catch (err) {
         console.log(err);
