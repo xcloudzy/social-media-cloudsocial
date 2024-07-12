@@ -16,7 +16,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "https://cloudsocial-client.vercel.app", // or '*' to allow all origins
+    origin: "*", // or '*' to allow all origins
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
