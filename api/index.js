@@ -12,15 +12,7 @@ const router = express.Router();
 const path = require("path");
 const cors = require("cors");
 
-dotenv.config();
-
-app.use(
-  cors({
-    origin: "https://cloudsocial-client.vercel.app", // or '*' to allow all origins
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-);
+require("dotenv").config();
 
 const connectDB = async () => {
   mongoose.connect(process.env.MONGO_URL, {
@@ -31,9 +23,17 @@ const connectDB = async () => {
 };
 connectDB();
 
+app.use(
+  cors({
+    origin: "https://cloudsocial-client.vercel.app", // or '*' to allow all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
+
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-//middleware
+// Middleware
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
@@ -57,7 +57,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   try {
-    return res.status(200).json("File uploded successfully");
+    return res.status(200).json("File uploaded successfully");
   } catch (error) {
     console.error(error);
   }
