@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://cloudsocial-api.vercel.app"
+  "proxy": "https://cloudsocial-api.vercel.app/"
 }
