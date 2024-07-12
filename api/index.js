@@ -39,7 +39,7 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(router);
 
-app.get("*", (req, res, next) => {
+app.get("/", (req, res, next) => {
   res.status(200).json({
     message: "Connected to vercel app",
   });
