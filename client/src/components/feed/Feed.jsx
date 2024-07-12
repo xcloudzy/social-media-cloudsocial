@@ -20,9 +20,6 @@ export default function Feed({ username }) {
               `https://cloudsocial-api.vercel.app/api/posts/timeline/${user._id}`
             );
 
-        // Log the response to understand its structure
-        console.log("API response:", res);
-
         // Check if res.data is an array before sorting
         if (Array.isArray(res.data)) {
           setPosts(

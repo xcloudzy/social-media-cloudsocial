@@ -20,11 +20,11 @@ export default function Rightbar({ user }) {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          `https://cloudsocial-api.vercel.app/users/friends/${user._id}`
+          `https://cloudsocial-api.vercel.app/api/users/friends/${user._id}`
         );
         setFriends(friendList.data);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
     getFriends();
