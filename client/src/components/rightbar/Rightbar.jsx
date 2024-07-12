@@ -13,14 +13,14 @@ export default function Rightbar({ user }) {
   const { user: currentUser, dispatch } = useContext(AuthContext);
 
   const [followed, setFollowed] = useState(
-    currentUser.followings.includes(user?.id)
+    currentUser.followings.includes(user?._id)
   );
 
   useEffect(() => {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          `https://cloudsocial-api.vercel.app/api/users/friends/${user._id}`
+          "https://cloudsocial-api.vercel.app/api/users/friends/" + user._id
         );
         setFriends(friendList.data);
       } catch (err) {
