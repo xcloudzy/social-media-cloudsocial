@@ -31,12 +31,16 @@ export default function Share() {
       console.log(newPost);
       try {
         await axios.post("https://cloudsocial-api.vercel.app/api/upload", data);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     }
     try {
       await axios.post("https://cloudsocial-api.vercel.app/api/posts", newPost);
       window.location.reload();
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
