@@ -16,9 +16,9 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "https://cloudsocial-client.vercel.app", // or '*' to allow all origins
+    origin: "*", // or '*' to allow all origins
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
@@ -34,6 +34,13 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(router);
+
+app.get("*", (req, res, next) => {
+  res.status(200).json({
+    message: "Connected to vercel app",
+  });
+});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

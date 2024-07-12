@@ -3,8 +3,8 @@ import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Nav, NavDropdown } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { NavLink } from "react-router-dom";
 
 export default function Topbar() {
   const { user, setAuth } = useContext(AuthContext);
@@ -53,10 +53,9 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-
-        <Nav>
-          <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
-        </Nav>
+        <NavLink to="/login">
+          <button onClick={logout}>Log Out</button>
+        </NavLink>
 
         <Link to={`/profile/${user.username}`}>
           <img
