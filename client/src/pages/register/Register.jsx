@@ -30,7 +30,7 @@ export default function Register() {
         );
         history.push("/login");
       } catch (err) {
-        console.log(err.message);
+        console.log(err.response.data);
       }
     }
   };
