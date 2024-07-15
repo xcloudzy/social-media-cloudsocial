@@ -24,9 +24,7 @@ export default function Register() {
       try {
         await axios.post(
           "https://cloudsocial-api.vercel.app/api/auth/register",
-          {
-            user,
-          }
+          user
         );
         history.push("/login");
       } catch (err) {
