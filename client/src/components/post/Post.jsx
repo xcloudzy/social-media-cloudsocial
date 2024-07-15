@@ -23,6 +23,7 @@ export default function Post({ post }) {
         `https://cloudsocial-api.vercel.app/api/users?userId=${post.userId}`
       );
       setUser(res.data);
+      console.log(post.userId);
     };
     fetchUser();
   }, [post.userId]);
@@ -30,9 +31,7 @@ export default function Post({ post }) {
   const likeHandler = () => {
     try {
       axios.put(
-        "https://cloudsocial-api.vercel.app/api/posts/" +
-          post._id +
-          "https://cloudsocial-api.vercel.app/api/like",
+        "https://cloudsocial-api.vercel.app/posts/" + post._id + "/like",
         { userId: currentUser._id }
       );
     } catch (err) {}
